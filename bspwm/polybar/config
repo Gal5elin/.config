@@ -54,7 +54,7 @@ font-3 = "Iosevka:style=bold:"size=12;3"
 
 modules-left = mod sep bspwm
 modules-center = 
-modules-right = updates-arch sep volume sep ethernet sep date
+modules-right = updates-arch sep used-memory sep cpu sep volume sep ethernet sep date
 
 separator =
 spacing = 0
@@ -122,7 +122,7 @@ font-3 = "Iosevka:style=bold:"size=12;3"
 
 modules-left = mod sep bspwm
 modules-center = 
-modules-right = updates-arch sep volume sep ethernet sep date
+modules-right = updates-arch sep used-memory sep cpu sep volume sep ethernet sep date
 
 separator =
 spacing = 0

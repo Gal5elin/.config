@@ -79,8 +79,8 @@ bspc config focus_follows_pointer true
 bspc rule -r *:*
 
 # 1 > terminal
-bspc rule -a Alacritty desktop='^1' follow=on focus=on
-bspc rule -a Xfce4-terminal desktop='^1' follow=on focus=on
+#bspc rule -a Alacritty desktop='^1' follow=on focus=on
+#bspc rule -a Xfce4-terminal desktop='^1' follow=on focus=on
 
 # 2 > web
 bspc rule -a firefox desktop='^5' follow=on focus=on
@@ -182,4 +182,7 @@ bspbar
 bspcomp
 bspdunst
 bspfloat &
+
+# picom
+killall picom && while pgrep -u $UID -x picom >/dev/null; do sleep 1; done && picom -b
 

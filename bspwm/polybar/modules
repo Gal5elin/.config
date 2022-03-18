@@ -378,8 +378,129 @@ interval = 120
 ; click-middle = "arch_updates -c&"
 ; scroll-up = "arch_updates -n&"
 
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+;;format = <label> <ramp-coreload>
+format = <label>
+format-prefix = 
+format-prefix-font = 2
+format-prefix-foreground = ${color.YELLOW}
+format-background = ${color.BG}
+format-padding = 1
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = " %percentage%%"
+
+; Spacing between individual per-core ramps
+;;ramp-coreload-spacing = 1
+;;ramp-coreload-0 = 
+;;ramp-coreload-1 = 
+;;ramp-coreload-2 = 
+;;ramp-coreload-3 = 
+;;ramp-coreload-4 = 
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3
+
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+format = <label>
+format-background = ${color.BG}
+format-padding = 1
+
+format-prefix = 
+format-prefix-font = 2
+format-prefix-foreground = ${color.CYAN}
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+
+label = " %mb_used%"
+
+; Only applies if <ramp-used> is used
+;;ramp-used-0 = 
+;;ramp-used-1 = 
+;;ramp-used-2 = 
+;;ramp-used-3 = 
+;;ramp-used-4 = 
+
+; Only applies if <ramp-free> is used
+;;ramp-free-0 = 
+;;ramp-free-1 = 
+;;ramp-free-2 = 
+;;ramp-free-3 = 
+;;ramp-free-4 = 
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/used-memory]
+type = custom/script
+
+exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
+
+tail = true
+interval = 5
+
+format = <label>
+format-background = ${color.BG}
+format-padding = 1
+
+format-prefix = 
+format-prefix-font = 2
+format-prefix-foreground = ${color.CYAN}
+
+label = " %output% MB"
+
+click-left = alacritty -e "top" &
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
 
 [module/sep]
 type = custom/text
@@ -387,7 +508,7 @@ content = ◆
 
 ;content-background = ${color.BACKGROUND}
 content-background = ${color.BACKTRANS}
-content-foreground = ${color.BLACK}
+content-foreground = ${color.CYAN}
 content-padding = 2
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
